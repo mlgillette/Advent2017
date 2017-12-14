@@ -48,23 +48,21 @@ public class Day14 {
 
         for (int i = 0; i < 128; i++) {
             for (int j = 0; j < 128; j++) {
-                if (marks[i][j] == null && binArr[i].charAt(j) != '0') {
-                    count++;
-                    walkAndMark(binArr, marks, i, j, count);
-                }
+                count += walkAndMark(binArr, marks, i, j);
             }
         }
         return count;
     }
 
-    public static void walkAndMark(String[] source, Integer[][] marks, int i, int j, int region) {
-        if (marks[i][j] != null) return;
+    public static int walkAndMark(String[] source, Integer[][] marks, int i, int j) {
+        if (marks[i][j] != null || source[i].charAt(j) == '0') return 0;
         if (source[i].charAt(j) == '1') {
-            marks[i][j] = region;
-            if (j < marks[i].length - 1) walkAndMark(source, marks, i, j+1, region);
-            if (j > 0) walkAndMark(source, marks, i, j-1, region);
-            if (i > 0) walkAndMark(source, marks, i-1, j, region);
-            if (i < marks.length - 1) walkAndMark(source, marks, i+1, j, region);
+            marks[i][j] = 1;
+            if (j < marks[i].length - 1) walkAndMark(source, marks, i, j+1);
+            if (j > 0) walkAndMark(source, marks, i, j-1);
+            if (i > 0) walkAndMark(source, marks, i-1, j);
+            if (i < marks.length - 1) walkAndMark(source, marks, i+1, j);
         }
+        return 1;
     }
 }
