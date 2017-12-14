@@ -23,7 +23,7 @@ public class Day10 {
         return circleList[0] * circleList[1];
     }
 
-    private static SkipPos knotHash(int[] circle, int[] lengths, int skip, int pos) {
+    static SkipPos knotHash(int[] circle, int[] lengths, int skip, int pos) {
 
         for (int i : lengths) {
             int max = pos + i;
