@@ -1,5 +1,8 @@
 package advent;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 public class Day13 {
@@ -82,6 +85,7 @@ public class Day13 {
     }
 
     public static int prob2(String input) {
+        Long start = System.currentTimeMillis();
         Map<Integer, Integer> firewall = new HashMap<>();
         for (String line : input.split("\\r?\\n")) {
             String[] wall = line.split(":");
@@ -93,6 +97,9 @@ public class Day13 {
         while (!run(firewall, i)) {
             i++;
         }
+        Long elapsed = (new Date()).getTime() - start;
+
+        System.out.println(elapsed);
         return i;
     }
 
