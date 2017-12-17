@@ -23,21 +23,16 @@ public class Day17 {
         int index = 0;
         for (int j = 0; j < max; j++) {
             index = (index + steps) % list.size();
-            if (index == list.size()) {
+            if (index > list.size() - 1) {
                 list.add(current);
             } else {
                 list.add(index + 1, current);
             }
-            index = getNextIndex(list, index);
+            index++;
             current++;
         }
-        return list.get(getNextIndex(list, index));
+        return list.get((index + 1) % list.size());
     }
-
-    private static int getNextIndex(List<Integer> list, int index) {
-        return list.size() > 0 ? (index + 1) % list.size() : 0;
-    }
-
 
     public static int prob2(int max, int steps) {
         int current = 1;
